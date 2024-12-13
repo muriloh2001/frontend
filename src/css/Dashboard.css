@@ -1,0 +1,113 @@
+.dashboard-container {
+    padding: 20px;
+    max-width: 1480px;
+    margin: auto;
+    display: flex;
+    box-shadow: var(--tw-shadow);
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start; /* Alinha os cards à esquerda */
+    margin-right: 20px;
+}
+
+.card {
+    background-color: var(--white);
+    border: 1px solid var(--grey-line);
+    border-radius: 10px;
+    width: calc(27% ); /* Garante que 3 cards caibam por linha */
+    padding: 20px;
+    box-shadow: var(--tw-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin-left: auto;
+    min-height: 700px;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Efeito de elevação */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Sombra mais forte no hover */
+}
+
+.card img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover; /* Imagem não distorcida */
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.card h2 {
+    font-size: 1.4rem;
+    margin: 10px 0;
+    font-weight: bold;
+    color: var(--text-grey);
+}
+
+.card .price {
+    font-size: 1.6rem;
+    color: var(--green);
+    margin: 15px 0;
+    font-weight: 600;
+}
+
+.card p {
+    margin: 5px 0;
+    color: var(--text-grey-mid);
+}
+
+.card .status {
+    margin-top: 10px;
+    padding: 5px 15px;
+    background-color: var(--grey-line);
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.card .status.novo {
+    background-color: var(--green);
+    color: var(--white);
+}
+
+.card .status.usado {
+    background-color: var(--orange-strong);
+    color: var(--white);
+}
+
+.card .status.semi-novo {
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+.card .add-to-cart {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: var(--orange-strong);
+    color: var(--white);
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.card .add-to-cart:hover {
+    background-color: var(--orange-text);
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 1024px) {
+    .card {
+        width: calc(45% - 20px); /* 2 cards por linha em telas médias */
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 100%; /* 1 card por linha em telas pequenas */
+    }
+}
