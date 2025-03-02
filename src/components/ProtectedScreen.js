@@ -10,7 +10,7 @@ const ProtectedScreen = () => {
   const [price, setPrice] = useState('');
   const [height, setHeight] = useState('');
   const [width, setWidth] = useState('');
-  const [image, setImage] = useState(null);
+  const [images, setImages] = useState([]);  // Alterado para múltiplas imagens
   const [status, setStatus] = useState('novo');
   const [message, setMessage] = useState('');
 
@@ -30,8 +30,12 @@ const ProtectedScreen = () => {
     formData.append('price', price);
     formData.append('height', height);
     formData.append('width', width);
-    formData.append('image', image);
     formData.append('status', status);
+
+    // Adiciona as imagens no FormData
+    images.forEach((image) => {
+      formData.append('images', image);
+    });
 
     try {
       const token = localStorage.getItem('token');
@@ -44,12 +48,13 @@ const ProtectedScreen = () => {
 
       setMessage('Mercadoria cadastrada com sucesso!');
       console.log(response.data);
+
       // Limpa o formulário
       setName('');
       setPrice('');
       setHeight('');
       setWidth('');
-      setImage(null);
+      setImages([]);
       setStatus('novo');
     } catch (error) {
       console.error('Erro ao cadastrar mercadoria:', error.response?.data || error.message);
@@ -108,7 +113,8 @@ const ProtectedScreen = () => {
         />
         <input
           type="file"
-          onChange={(e) => setImage(e.target.files[0])}
+          multiple
+          onChange={(e) => setImages(Array.from(e.target.files))}
           required
           style={{ padding: '10px' }}
         />
